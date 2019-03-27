@@ -1,7 +1,6 @@
-﻿using DFC.GeoCoding.Standard.AzureMaps;
-using DFC.GeoCoding.Standard.AzureMaps.Model;
+﻿using Dfc.Latlong.RnD.DAL;
 using DFC.GeoCoding.Standard.AzureMaps.Service;
-using System;
+
 using System.Configuration;
 using System.Threading.Tasks;
 
@@ -23,16 +22,29 @@ namespace dfc_latlong_RnD
                 apiVersion: _apiVersion,
                 subscriptionKey: _key);
 
-            CallService().Wait();
+            UpdateCoordinates().Wait();
         }
 
-        public static async Task CallService()
+        public static async Task UpdateCoordinates()
         {
 
             //Load Document
             //Loop through regions, get sub regions
             //For each sub region, get the lat long, find in SQL, insert.
-            var results =  await service.GetPositionForAddress("Northampton GB");
+            DataAccessLayer dal = new DataAccessLayer();
+
+            var regions = dal.GetRegions();
+            foreach (var region in regions.RegionItems)
+            {
+                foreach (var subRegion in region.SubRegions)
+                {
+                    subRegion.LatLong = service.GetPositionForAddress(subRegion.Name).Result;
+
+                    //Call stored proc
+                }
+            }
         }
+
+        
     }
 }

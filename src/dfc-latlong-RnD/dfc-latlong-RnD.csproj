@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\dfc-geocoding-pkg-netstandard\DFC.GeoCoding.Standard\DFC.GeoCoding.Standard.csproj" />
+    <ProjectReference Include="..\Dfc.Latlong.RnD.DAL\Dfc.Latlong.RnD.DAL.csproj" />
+    <ProjectReference Include="..\DFC.GeoCoding.Standard\DFC.GeoCoding.Standard.csproj" />
+    <ProjectReference Include="..\Dfc.Latlong.RnD.DAL\Dfc.Latlong.RnD.DAL.csproj" />
   </ItemGroup>
 
 </Project>
