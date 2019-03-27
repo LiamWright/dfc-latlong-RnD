@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dfc-latlong-RnD", "src\dfc-latlong-RnD\dfc-latlong-RnD.csproj", "{1D016D2E-44F3-4274-9B5D-72D649D598F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DFC.GeoCoding.Standard", "..\dfc-geocoding-pkg-netstandard\DFC.GeoCoding.Standard\DFC.GeoCoding.Standard.csproj", "{8F548721-E7EA-4D52-AE4F-667F797B2638}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1D016D2E-44F3-4274-9B5D-72D649D598F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D016D2E-44F3-4274-9B5D-72D649D598F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D016D2E-44F3-4274-9B5D-72D649D598F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D016D2E-44F3-4274-9B5D-72D649D598F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8F548721-E7EA-4D52-AE4F-667F797B2638}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F548721-E7EA-4D52-AE4F-667F797B2638}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F548721-E7EA-4D52-AE4F-667F797B2638}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F548721-E7EA-4D52-AE4F-667F797B2638}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B039AD60-2A44-4FEA-8403-849AF1B99FDB}
+	EndGlobalSection
+EndGlobal
