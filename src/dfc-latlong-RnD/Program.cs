@@ -1,6 +1,6 @@
 ﻿using Dfc.Latlong.RnD.DAL;
 using DFC.GeoCoding.Standard.AzureMaps.Service;
-
+using Newtonsoft.Json;
 using System.Configuration;
 using System.Threading.Tasks;
 
@@ -38,11 +38,14 @@ namespace dfc_latlong_RnD
             {
                 foreach (var subRegion in region.SubRegions)
                 {
-                    subRegion.LatLong = service.GetPositionForAddress(subRegion.Name).Result;
+                    var result = service.GetPositionForAddress(subRegion.SubRegionName).Result;
 
-                    //Call stored proc
+                    subRegion.Latitude = (decimal)result.Lat;
+                    subRegion.Longitude = (decimal)result.Lon;
+
                 }
             }
+            var json = JsonConvert.SerializeObject(regions);
         }
 
         

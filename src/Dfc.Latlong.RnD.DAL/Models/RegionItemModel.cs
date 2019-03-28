@@ -9,13 +9,15 @@ namespace dfc_latlong_RnD.Models
         public string RegionName { get; set; }
         public bool? Checked { get; set; }
 
-        public SubRegion[] SubRegions { get; set; }
+        public SubRegionItemModel[] SubRegions { get; set; }
     }
 
-    public class SubRegion
+    public class SubRegionItemModel
     {
         public string Id { get; set; }
-        public string Name { get; set; }
-        public Position LatLong { get; set; }
+        public string SubRegionName { get; set; }
+        public bool? Checked { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
     }
 }
