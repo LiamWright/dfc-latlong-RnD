@@ -8,6 +8,8 @@ namespace dfc_latlong_RnD.Models
         public string Id { get; set; }
         public string RegionName { get; set; }
         public bool? Checked { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
 
         public SubRegionItemModel[] SubRegions { get; set; }
     }

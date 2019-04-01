@@ -42,8 +42,14 @@ namespace dfc_latlong_RnD
             var regions = dal.GetRegions();
             foreach (var region in regions.RegionItems)
             {
+                var regionResult = service.GetPositionForAddress(region.RegionName + ", England, United Kingdom").Result;
+
+                region.Latitude = (decimal)regionResult.Lat;
+                region.Longitude = (decimal)regionResult.Lon;
+
                 foreach (var subRegion in region.SubRegions)
                 {
+                    
                     var result = service.GetPositionForAddress(subRegion.SubRegionName).Result;
 
                     subRegion.Latitude = (decimal)result.Lat;
@@ -52,7 +58,7 @@ namespace dfc_latlong_RnD
                 }
             }
             var json = JsonConvert.SerializeObject(regions);
-            dal.InsertIntoTable(regions);
+            //dal.InsertIntoTable(regions);
         }
 
 
