@@ -1,5 +1,6 @@
 ﻿using Dfc.Latlong.RnD.DAL;
 using DFC.GeoCoding.Standard.AzureMaps.Service;
+using dfc_latlong_RnD.Models;
 using Newtonsoft.Json;
 using System.Configuration;
 using System.Threading.Tasks;
@@ -10,6 +11,7 @@ namespace dfc_latlong_RnD
     {
         public static string _apiUrl, _apiVersion, _key;
         public static AzureMapService service;
+        public static DataAccessLayer dal;
         static void Main(string[] args)
         {
             _apiUrl = ConfigurationManager.AppSettings["ApiUrl"];
@@ -22,7 +24,11 @@ namespace dfc_latlong_RnD
                 apiVersion: _apiVersion,
                 subscriptionKey: _key);
 
+
+
+            dal = new DataAccessLayer();
             UpdateCoordinates().Wait();
+
         }
 
         public static async Task UpdateCoordinates()
@@ -31,7 +37,7 @@ namespace dfc_latlong_RnD
             //Load Document
             //Loop through regions, get sub regions
             //For each sub region, get the lat long, find in SQL, insert.
-            DataAccessLayer dal = new DataAccessLayer();
+            
 
             var regions = dal.GetRegions();
             foreach (var region in regions.RegionItems)
@@ -46,7 +52,9 @@ namespace dfc_latlong_RnD
                 }
             }
             var json = JsonConvert.SerializeObject(regions);
+            dal.InsertIntoTable(regions);
         }
+
 
         
     }

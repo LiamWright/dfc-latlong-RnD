@@ -1,12 +1,59 @@
 ﻿using dfc_latlong_RnD.Models;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Text;
 
 namespace Dfc.Latlong.RnD.DAL
 {
     public class DataAccessLayer
     {
+        public void InsertIntoTable(SelectRegionModel model)
+        {
+            //Get regions
+            using (SqlConnection sqlCon = new SqlConnection(System.Configuration.ConfigurationManager.ConnectionStrings["Connection"].ConnectionString))
+            {
+                sqlCon.Open();
+
+                using (SqlCommand cmd = new SqlCommand
+                {
+                    CommandText =
+                    "INSERT INTO [dbo].[Subregion](" +
+                    "[SubregionId]," +
+                    "[Lat]," +
+                    "[Long])" +
+                    "VALUES(" +
+                    "@subregionId, " +
+                    "@lat, " +
+                    "@long)",
+                    Connection = sqlCon
+                })
+                {
+
+                    
+
+                    foreach (var region in model.RegionItems)
+                    {
+                        foreach (var subRegion in region.SubRegions)
+                        {
+                            cmd.Parameters.AddWithValue("@subregionId", subRegion.Id);
+                            cmd.Parameters.AddWithValue("@lat", subRegion.Latitude.ToString());
+                            cmd.Parameters.AddWithValue("@long", subRegion.Longitude.ToString());
+
+                            cmd.ExecuteNonQuery();
+
+                            cmd.Parameters.Clear();
+
+                        }
+                    }
+
+                    sqlCon.Close();
+                }
+
+                
+            }
+        }
+
         public SelectRegionModel GetRegions()
         {
             return new SelectRegionModel
